@@ -15,4 +15,6 @@ print "Weight(kg): "
 weight = gets.chomp.to_f
 bmi = weight / (height/100)**2
 puts "BMI - #{bmi}"
+
+
 #56minutes
