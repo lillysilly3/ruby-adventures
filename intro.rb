@@ -270,5 +270,5 @@ my_chef.make_chicken()
 
 my_italian_chef = ItalianChef.new("Massimo Bottura", 55, "Italy")
 my_italian_chef.make_chicken()
-puts my_italian_chef.age 
+puts my_italian_chef.age;#??? why ;
 
