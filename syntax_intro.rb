@@ -104,7 +104,7 @@ puts sum
 is_student = false
 is_smart = false
 
-if is_student and is is_smart
+if is_student and is_smart
     puts "You are a student"
 elsif is_student and !is_smart
     puts "You are not a smart student"
@@ -185,17 +185,17 @@ begin
     puts bad_variable
     num = 10/0
 rescue ZeroDivisionError
-    pus "Error"
+    puts "Error"
 rescue
-    put "All other errors"
+    puts "All other errors"
 end
 
 raise "Made up exception"
 
 #Object orientation
 class Book
-    attr_accessor : title, :author
-    v#constructors
+    attr_accessor :title, :author
+    #constructors
     def initialize(title, author)
         self.title = title #with self it refers to get and set methods
         @author = author
@@ -270,5 +270,5 @@ my_chef.make_chicken()
 
 my_italian_chef = ItalianChef.new("Massimo Bottura", 55, "Italy")
 my_italian_chef.make_chicken()
-puts my_italian_chef.age;#??? why ;
+puts my_italian_chef.age # ; at end of line is valid but not idiomatic in Ruby
 

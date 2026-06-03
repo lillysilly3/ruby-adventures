@@ -5,7 +5,7 @@ p "hello world"
 # This is a comment
 
 =begin
-   This 
+   This
    is
    comment
 =end
@@ -40,7 +40,7 @@ a equal? b # check the same object id. you can get object id with a.object_id
 
 #RANGE OPERATORS
 (1..5).to_a #makes array of [1, 2, 3, 4, 5]
-(a...5).tob #makes array of [1, 2, 3, 4]
+(a...5).to_a #makes array of [1, 2, 3, 4]
 
 #DEFINING
 defined? a #local variable
@@ -48,13 +48,13 @@ defined? $_ #global variable
 defined? none # return is nil as it is not defined
 defined? puts # returns method
 
-#sSTRINGS
+#STRINGS
 name = "John"
 puts "Hello #{name}"
 puts "Result: #{5+9}"
 message = "ryby is your best friend.\n"
 message.length #26 what actual lenght of a string
-mesage.size #how much allocated
+message.size #how much allocated
 message.count("y") #2
 
 message[0] #r
@@ -147,7 +147,7 @@ puts message
 #UNLESS STATEMENT
 is_online = true
 
-if != is_online
+if !is_online
    puts "maintenance"
 end
 
@@ -179,7 +179,7 @@ unless is_online then puts "maintenance" end
 #seventh way
 unless is_online then puts "maintenance" else puts "homepage" end
 
-#eight way   
+#eight way
 if is_online then puts "homepage" end #homepage???
 
 #CASE STATEMENTS
@@ -196,7 +196,7 @@ else
 end
 
 #second case
-case 
+case
 when number == 0
    puts "number is 0"
 when number == 1
@@ -282,7 +282,7 @@ end until i > 4 # 0 1 2 3 4 (5 is not included)
 #break and next
 i = 0
 while i < 5
-   
+
    if i == 3
       break
    end
@@ -297,7 +297,7 @@ while i < 5
    if i == 3
       next
    end
-   
+
    puts i
 end # 1 2 4 5
 
@@ -353,10 +353,12 @@ def is_negative(num)
       return true
    else
       return false
+   end
+end
 puts is_negative(5) #false
 
 def test
-   yield #???
+   yield #passes control to a block
 end
 test { puts "a method"} #a method
 
@@ -381,7 +383,7 @@ end
 test { |a, b| puts "p1: #{a}, p2: #{b}"} #p1: 1, p2: 100
 
 # begin and end blocks execute in the begining and in end.
-# Could be multiple of them. BEGIN blocks executed in order 
+# Could be multiple of them. BEGIN blocks executed in order
 # they are, END blocks executed in reverse order
 BEGIN {
    puts "BEGIN BLOCK"
@@ -426,7 +428,7 @@ end
 puts square.call(4) # 16
 
 # 5
-def test{function, argument}
+def test(function, argument)
    function.call(argument)
 end
 puts test square, 3 #9
@@ -434,7 +436,7 @@ puts test square, 3 #9
 #VARIABLES
 # Global variable
 $a = 1 #we can change value in func scopes and it will
-# affect actul variable. But $ has to be otherwise 
+# affect actul variable. But $ has to be otherwise
 # variable will not be changed
 
 #RECURSIVE METHODS
@@ -442,22 +444,22 @@ $a = 1 #we can change value in func scopes and it will
 def calculate(number)
    if number == 0
       return 0
-   else 
+   else
       return number + calculate(number - 1)
    end
 end
 
 # 2
 def calculate(number)
-   return 0 number.zero?
+   return 0 if number.zero?
    number + calculate(number-1)
 end
 
-#MODULES???
+#MODULES
 module ModuleA
    MESSAGE = "This is a module constant."
 
-   def ModuleA.quare(number)
+   def ModuleA.square(number)
       number*number
    end
 
@@ -476,10 +478,10 @@ require "test_module"
 require "./test_module"
 
 # 4
-rewuire_realtive 'test_module'
+require_relative 'test_module'
 
 puts ModuleA::MESSAGE #This is a module constant.
-puts ModuleA.quare 5 #25
+puts ModuleA.square 5 #25
 
 #ARRAYS
 # ordered integer indexed list that could be any type
@@ -506,7 +508,7 @@ end
 # 2
 i = 0
 while i < animals.length
-   puts.animals[i]
+   puts animals[i]
    i += 1
 end
 
@@ -521,8 +523,8 @@ a = [1, 2, 3, 4, 5]
 
 a[3,3] = ["a", "b", "c"] #[1, 2, "a", "b", "c"] from 3rd element for 3 to the right
 
-a[3,2] = Array[100..105]??? #[1, 2, 100, 101, 102, 103, 104, 105, "c"]
-# from third element of the array changed and explanded 
+# a[3,2] = Array[100..105]
+# from third element of the array changed and explanded
 # from two items to six items and the rest items shifted
 # in position. Also its possible to shrink it with the same method
 
@@ -544,7 +546,7 @@ a | b # [1, 2, 3, 4, 5, 6] return a union of both arrays with no dublicate
 #ARRAY METHODS
 a = [1, 2, 3, 4, 5]
 
-a.size 
+a.size
 a.length
 a.max # [5] max value in the array
 a.min # [1] min value in the array
@@ -567,7 +569,7 @@ a.include?(3) # checks if item is in array. Returns bool
 a.each { |x| puts x }
 a.each { |i| puts "index #{i}"}
 a.each_with_index { |value, index| puts "index=#{index} --- value=#{value}" }
-# shows index and value of an item 
+# shows index and value of an item
 a.map { |x| x**2 } # returns changed values of the array??? does it change it or makes a new array?
 
 a = [1, 2, [4, 5, ["a", "b"]]]
@@ -619,23 +621,22 @@ h[:city] # "This is a default value"
 h["test"] # "This is a default value"
 
 #Hash methods
-h.length 
+h.length
 h.size #???
-h.to_s 
+h.to_s
 h.to_a # converts to array
 h.min # returns key value array according to minimal number or char in alphabetical order
 h.max
 h.fetch(:name) #if exist return value of the key
 h.values # returns values of h
 h.keys # returns keys of h
-h.key("John") #[:name] returns key 
+h.key("John") #[:name] returns key
 h.has_key?(:city) #true
 h.key?(:city) # is it a key. true
 h.value?("John") # is it a value. true
 h.store(:email, "john.doe@example.com") # adds hash to the end of a list
 h.delete(:email)
 h.merge({ :city=>"Paris", :phone=>"0123456789"}) # merge two hashes into one
-h.override #???
 h.sort # sorts key values by accending order and returns as key value arrays
 h.each {|key, value| puts "#{key} = #{value}"} # goes through hash list
 h.reverse_each {|key, value| puts "#{key} = #{value}"}
@@ -661,7 +662,7 @@ puts Dir.pwd
 Dir.chdir "foo"
 puts Dir.pwd
 
-Dir.dlete("bar")
+Dir.delete("bar")
 
 puts Dir.pwd # prints absolute path???
 folder = Dir.new "foo" # this can be used with .open instead of .new
@@ -672,7 +673,7 @@ folder.each do |file|
    puts file
 end   # shows each entry in new line
 # 3
-print Dir.entreis("/usr/bin") # shows as an array
+print Dir.entries("/usr/bin") # shows as an array
 # 4
 Dir.foreach("/usr/bin") do |entry|
    puts entry
@@ -700,7 +701,7 @@ f.each do |line|
 end # shows each line
 
 File.absolute_path("test.txt") # shows absolute path
-puts 
+puts
 File.basename("absolute_path", ".txt") # shows file name. If we dont want extension, we specify it as second argument
 
 puts File::exist?("test.txt")
@@ -709,16 +710,16 @@ puts File.directory?("test.txt")
 File.rename("test.txt", "foo.txt")
 File.delete("foo.txt")
 
-#EXCEPTIONS ???
+#EXCEPTIONS
 a = 5
 puts "before exception"
 raise Exception, "an exception" if a > 5 # stops code from executing the code later
 puts "after exception"
 
-begin # evcerything between begin and rescue is secure
+begin # everything between begin and rescue is secure
    puts "processing"
-   raise NameError "an exception" # could be without NameError
-rescue Excpetion => e
+   raise NameError, "an exception" # could be without NameError
+rescue Exception => e
    puts "exception handling"
    puts e.message # prints here and exception
 end
@@ -727,7 +728,7 @@ begin
    puts "before exception"
    a = 3 / 0
    puts "after exception"
-rescue
+rescue => e
    puts "#{e.class} : #{e.message}" # ??? Concept of this is not clear. ruby backtracks something
    e.backtrace.inspect
    #or
@@ -738,7 +739,7 @@ rescue
 rescue Exception => e # can be few rescues
    puts "#{e.class} : #{e.message}"
 else
-   putsw "no errors!"
+   puts "no errors!"
 # if we need to execute some code regardless if error accured:
 ensure
    puts "ensuring execution" # ??? what happens if ensure code itself has an error?
@@ -746,7 +747,7 @@ end
 
 filename = "text.txt"
 begin
-   file = file.open(filename)
+   file = File.open(filename)
    if file
       puts "File opened successfully"
    end
@@ -768,12 +769,13 @@ search = nil
 
 # 1
 catch(:found) do
-array.each do |raw|
-   raw.each fo |item|
-      counter += 1
-      if item == "wanted"
-         search = item
-         throw(:found)
+   array.each do |raw|
+      raw.each do |item|
+         counter += 1
+         if item == "wanted"
+            search = item
+            throw(:found)
+         end
       end
    end
 end
@@ -784,7 +786,7 @@ puts "Search: #{search}"
 # 2
 search = catch(:found) do # add search variable
    array.each do |raw|
-      raw.each fo |item|
+      raw.each do |item|
          counter += 1
          throw(:found, item) if item == "wanted" # add item argument??? deleted search and put if statement in one line
       end
@@ -821,17 +823,16 @@ class Person
    def name=(new_name)
       @name = new_name
    end
-   
 end
 
 p1 = Person.new("John", 25)
-puts p.name #getter as in asks to know value???
-p.name = "Jack" #setter as in makes value???
+puts p1.name #getter as in asks to know value???
+p1.name = "Jack" #setter as in makes value???
 
 #ATTRIBUTES:: AND CONSTANTS
 class Person
    MESSAGE= "Class Constant" # constants start with UPPER CASE
-   @@counter = 0 #??? why @@
+   @@counter = 0 # class variable shared across all instances
    def initialize
       @@counter += 1
    end
@@ -868,3 +869,193 @@ e = Employee.new("Lala", 20)
 e.displayInfo
 e.test
 p Employee.ancestors # shows [Employee, Person, Object, Kernel, BasicObject]
+
+#INCLUDE, EXTEND and PREPEND keywords
+module ModuleA
+  def dummy
+    puts "Dummy from ModuleA"
+  end
+end
+module ModuleB
+  def dummy
+    puts "Dummy from ModuleB"
+  end
+end
+
+# 1
+class Worker
+  include ModuleA
+  def run
+    dummy()
+  end
+end
+
+p Worker.ancestors #shows all hierarchy
+w = Worker.new #method in the last module is used
+w.run
+
+# 2
+module WorkerDebugger
+  def run(params)
+    puts "Running with params: #{params.inspect}"
+    result = super(params)
+    puts "Completed: Results: #{result}"
+  end
+end
+
+class Worker
+  prepend WorkerDebugger # this way module will be at the bottom of the ancestor chain
+  def run(params)
+    puts "Working on params: #{params.inspect}"
+    params.map { |i| i**2 }
+  end
+end
+
+w = Worker.new
+w.run([1, 3, 5])
+
+# 3
+# with extend function we can use module methods in a class instance
+module ModuleC
+  def self.method1 # with self it doesnt work with extend??? !!!if class has nothing in it
+    puts "method1: class method"
+  end
+  def method2 # this one without self works with object.extend??? !!!if class has nothing in it
+    puts "method2: instance method"
+  end
+end
+
+class Test
+end
+
+object = Test.new
+object.extend ModuleC
+object.method2
+
+#POLYMORPHISM
+# ability to present the same interface for different data types
+class Document
+  def initialize(title)
+    @title = title
+  end
+end
+
+class PDF < Document
+  def print
+    puts "printing PDF, title: #@title"
+  end
+end
+
+class Word < Document
+  def print
+    puts "printing Word, title: #@title"
+  end
+end
+
+Word.new("Ruby Examples").print
+PDF.new("Polymorphism").print
+
+#duck method
+class WhatsApp
+  def call
+    puts "WhatsApp call"
+  end
+end
+
+class Skype
+  def call
+    puts "Skype call"
+  end
+end
+
+apps = [Skype, WhatsApp]
+apps.each do |obj|
+  obj.new.call
+end
+
+#ENCAPSULATION
+# internal representation of an object that is hidden
+# from other objects. It can be used to hide variables
+# and methods. It can only accessible through public methods.
+
+class Person
+  def initialize(name, profession)
+    @name, @profession = name, profession
+  end
+  def name
+    @name
+  end
+  def info # getter method
+    "Name: #{@name}, Profession: #{@profession}"
+  end
+  def setProfession(profession)
+    @profession = profession
+  end
+end
+
+p = Person.new("John", "Doctor")
+p.setProfession("Engineer")
+puts p.info
+
+#METHOD OVERRIDE
+class Animal
+  def swim
+    puts "Animals can swimming"
+  end
+end
+
+class Tiger < Animal
+  def swim
+    puts "Tigers can swimming"
+  end
+end
+
+tiger = Tiger.new
+tiger.swim
+
+class Point # vectors??
+  attr_accessor :x, :y
+  def initialize(x, y)
+    @x, @y = x, y
+  end
+  def to_s # defines how the object is printed as a string
+    "Point(#{@x}, #{@y})"
+  end
+  def +(other) #can you just put symbol like that???
+    Point.new(@x + other.x, @y + other.y)
+  end
+end
+
+p1 = Point.new(2, 3)
+p2 = Point.new(4, 7)
+puts p1 + p2 # needs to be defined "+" as it is not defined method at the moment
+
+#PRIVATE - PROTECTED METHODS
+#public - default, private, protected
+
+class A
+  def method
+    puts "method1: public from #{self.class}"
+  end
+
+  private # cannot be accessed outside the class. can be written above method or as declaration
+  def method2
+    puts "method2: private method from #{self.class}"
+  end
+  private :method2 #declaration way of making it private ???where does it have to be placed
+#??? we cannot call private method with explicit reciever as self.method2 for example
+
+  protected #the difference between private and protected is that protected can be called with explicit reciever as self.method3 for example
+  def method3
+    puts "method3: protected from #{self.class}"
+  end
+  #protected :method3 B.new.method3 will not work
+end
+
+class B < A
+  def test
+    method1
+  end
+end
+
+B.new.test #public method from B
