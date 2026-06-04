@@ -35,9 +35,11 @@ A collection of exercises and mini projects built while learning Ruby fundamenta
 - Exception handling
 - Recursion
 
-## Getting Started
+## Prerequisites
 
-**Requirements:** Ruby 2.7+
+- Ruby 2.7+
+
+## Getting Started
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/ruby_adventures
